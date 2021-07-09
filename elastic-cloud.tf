@@ -43,13 +43,13 @@ resource "ec_deployment" "elasticsearch" {
     topology {
       id = "hot_content"
       size = "8g"
-      zone_count = "1"
+      zone_count = "2"
     }
   }
   kibana {
     topology {
-      size = "2g"
-      zone_count = "1"
+      size = "4g"
+      zone_count = "2"
     }
   }
 }
