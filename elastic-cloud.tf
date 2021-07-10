@@ -9,10 +9,10 @@ terraform {
 }
 
 provider "ec" {
-  apikey = var.ess_api_key
+  apikey = var.ec_api_key
 }
 
-variable "ess_api_key" {
+variable "ec_api_key" {
   type = string
 }
 
