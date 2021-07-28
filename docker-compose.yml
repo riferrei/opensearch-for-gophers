@@ -3,7 +3,7 @@ version: '3.0'
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.4
     container_name: elasticsearch
     environment:
     - bootstrap.memory_lock=true
@@ -25,7 +25,7 @@ services:
       test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.13.3
+    image: docker.elastic.co/kibana/kibana:7.13.4
     container_name: kibana
     depends_on:
       elasticsearch:
