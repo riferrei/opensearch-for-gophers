@@ -55,14 +55,12 @@ type GetResponse struct {
 type SearchResponse struct {
 	Hits struct {
 		Total struct {
-			Value int64
-		}
-		Hits []*SearchHit
-	}
-}
-
-type SearchHit struct {
-	Source MovieRaw `json:"_source"`
+			Value int64 `json:"value"`
+		} `json:"total"`
+		Hits []*struct {
+			Source Movie `json:"_source"`
+		} `json:"hits"`
+	} `json:"hits"`
 }
 
 /*************************************************/
@@ -88,18 +86,12 @@ type Terms struct {
 }
 
 type AggregationResponse struct {
-	Aggregations Aggregations `json:"aggregations"`
-}
-
-type Aggregations struct {
-	MovieCountPerGenreResponse MovieCountPerGenreResponse `json:"movieCountPerGenre"`
-}
-
-type MovieCountPerGenreResponse struct {
-	Buckets []Bucket `json:"buckets"`
-}
-
-type Bucket struct {
-	Key           string `json:"key"`
-	DocumentCount int    `json:"doc_count"`
+	Aggregations struct {
+		MovieCountPerGenreResponse struct {
+			Buckets []*struct {
+				Key           string `json:"key"`
+				DocumentCount int    `json:"doc_count"`
+			} `json:"buckets"`
+		} `json:"movieCountPerGenre"`
+	} `json:"aggregations"`
 }
