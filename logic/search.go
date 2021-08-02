@@ -77,7 +77,7 @@ func BestKeanuActionMovies(ctx context.Context) {
 		for _, movieTitle := range searchResponse.Hits.Hits {
 			movieTitles = append(movieTitles, movieTitle.Source.Title)
 		}
-		fmt.Printf("🚀 Best action movies from Keanu: [%s] ✅\n", strings.Join(movieTitles, ", "))
+		fmt.Printf("✅ Best action movies from Keanu: [%s] \n", strings.Join(movieTitles, ", "))
 	}
 
 }

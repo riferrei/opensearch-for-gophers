@@ -32,6 +32,6 @@ func QueryMovieByDocumentID(ctx context.Context) {
 	}
 
 	movieTitle := getResponse.Source.Title
-	fmt.Printf("🚀 Movie with the ID %d: %s ✅\n", documentID, movieTitle)
+	fmt.Printf("✅ Movie with the ID %d: %s \n", documentID, movieTitle)
 
 }
