@@ -9,7 +9,7 @@ You can run this code with an Elasticsearch instance running locally, to which y
 ## Examples available in this project:
 
 ### ✅ Movies Loading
-'
+
 The data model from this project is a collection of movies from the file [movies.json](./movies.json). This file will be [loaded](logic/movies.go) in memory and made available within the context, which the other functions will work with. Here is an example of a movie:
 
 ```json
