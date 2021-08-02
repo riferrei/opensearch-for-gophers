@@ -2,6 +2,8 @@
 
 This project contains an end-to-end example that showcases different features from the official [Go Client for Elasticsearch](https://github.com/elastic/go-elasticsearch) that you can use as a reference about how to get started with Elasticsearch in your Go projects. It is not intended to provide the full spectrum of what the client is capable of — but it certainly puts you on the right track.
 
+![Elasticsearch for Gophers](images/es4gophers.png)
+
 You can run this code with an Elasticsearch instance running locally, to which you can leverage the [Docker Compose code](./docker-compose.yml) available in the project. Alternatively, you can also run this code with an Elasticsearch instance from Elastic Cloud that can be easily created using the [Terraform code](./elastic-cloud.tf) also available in the project.
 
 ## Examples available in this project:
