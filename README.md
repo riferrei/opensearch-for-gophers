@@ -8,7 +8,7 @@ You can run this code with an Elasticsearch instance running locally, to which y
 
 ## Examples available in this project:
 
-### 🚀 Movies Loading ✅
+### ✅ Movies Loading
 
 The data model from this project is a collection of movies from the file [movies.json](./movies.json). This file will be [loaded](logic/movies.go) in memory and made available within the context, which the other functions will work with. Here is an example of a movie:
 
@@ -39,7 +39,7 @@ The data model from this project is a collection of movies from the file [movies
 }
 ```
 
-### 🚀 Connection Handling ✅
+### ✅ Connection Handling
 
 Once the movies are loaded, the code will create a [connection](logic/connect.go) with Elasticsearch and make this connection available within the context as well.
 
@@ -54,7 +54,7 @@ if err != nil {
 }
 ```
 
-### 🚀 Document Indexing ✅
+### ✅ Document Indexing
 
 All the movies will be [indexed](logic/index.go) in Elasticsearch. The example uses the [Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) to index documents, which is the equivalent to this:
 
@@ -64,7 +64,7 @@ POST movies/_bulk
 { "Year" : "2012", "Title": "The Avengers" }
 ```
 
-### 🚀 Document Lookup ✅
+### ✅ Document Lookup
 
 An example of [document lookup](logic/lookup.go) is also available. Out of all movies loaded, an ID will be randomly selected, and the document associated with this ID will be looked up. Just like you would do with:
 
@@ -72,7 +72,7 @@ An example of [document lookup](logic/lookup.go) is also available. Out of all m
 GET movies/_doc/<DOCUMENT_ID>
 ```
 
-### 🚀 You Know, for Search ✅
+### ✅ You Know, for Search
 
 Obviously, this project couldn't leave behind an example of a search. The implemented [search](logic/search.go) look for all the best action movies from [Keanu Reeves](https://en.wikipedia.org/wiki/Keanu_Reeves) from 1995 to 2005. This search is the equivalent to:
 
@@ -109,7 +109,7 @@ GET movies/_search
 }
 ```
 
-### 🚀 Aggregation Analytics ✅
+### ✅ Aggregation Analytics
 
 Finally, the project also runs a very interesting [aggregation](logic/aggreg.go) to find out the top five genres and their respective movie counts. Just like you would do with:
 
