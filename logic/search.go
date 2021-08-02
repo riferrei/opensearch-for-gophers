@@ -21,25 +21,25 @@ func BestKeanuActionMovies(ctx context.Context) {
 			"bool": map[string]interface{}{
 				"must": map[string]interface{}{
 					"match": map[string]string{
-						"Actors.en": "keanu reeves",
+						"actors.en": "keanu reeves",
 					},
 				},
 				"filter": []map[string]interface{}{
 					{
 						"term": map[string]string{
-							"Genres.keyword": "Action",
+							"genres.keyword": "Action",
 						},
 					},
 					{
 						"range": map[string]interface{}{
-							"Rating": map[string]float64{
+							"rating": map[string]float64{
 								"gte": 7.0,
 							},
 						},
 					},
 					{
 						"range": map[string]interface{}{
-							"Year": map[string]int{
+							"year": map[string]int{
 								"gte": 1995,
 								"lte": 2005,
 							},

@@ -6,7 +6,7 @@ PUT movies
     },
     "mappings": {
         "properties": {
-            "Title": {
+            "title": {
                 "type": "text",
                 "fields": {
                   "en": {
@@ -23,20 +23,20 @@ PUT movies
                   }
                 }
             },
-            "Year": {
+            "year": {
                 "type": "long"
             },
-            "RunningTime": {
+            "runningTime": {
                 "type": "long"
             },
-            "ReleaseDate": {
+            "releaseDate": {
                 "type": "date",
                 "ignore_malformed": true
             },
-            "Rating": {
+            "rating": {
                 "type": "double"
             },
-            "Actors": {
+            "actors": {
                 "type": "text",
                 "fields": {
                   "en": {
@@ -53,7 +53,7 @@ PUT movies
                   }
                 }
             },
-            "Directors": {
+            "directors": {
                 "type": "text",
                 "fields": {
                   "en": {
@@ -70,7 +70,7 @@ PUT movies
                   }
                 }
             },
-            "Genres": {
+            "genres": {
                 "type": "text",
                 "fields": {
                     "keyword": {
@@ -116,22 +116,22 @@ GET movies/_search
     "bool": {
       "must": {
         "match": {
-          "Actors.en": "keanu reeves"
+          "actors.en": "keanu reeves"
         }
       },
       "filter": [
         {
           "term": {
-            "Genres.keyword": "Action"
+            "genres.keyword": "Action"
           }
         },
         {"range": {
-          "Rating": {
+          "rating": {
             "gte": 7.0
           }
         }},
         {"range": {
-          "Year": {
+          "year": {
             "gte": 1995,
             "lte": 2005
           }
@@ -149,7 +149,7 @@ GET movies/_search
   "aggs": {
     "movieCountPerGenre": {
       "terms": {
-        "field": "Genres.keyword",
+        "field": "genres.keyword",
         "size": 5
       }
     }

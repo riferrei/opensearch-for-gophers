@@ -31,14 +31,14 @@ type InfoRaw struct {
 }
 
 type Movie struct {
-	Title       string
-	Year        int
-	RunningTime float32
-	ReleaseDate string
-	Rating      float32
-	Genres      []string
-	Actors      []string
-	Directors   []string
+	Title       string   `json:"title"`
+	Year        int      `json:"year"`
+	RunningTime float32  `json:"runningTime"`
+	ReleaseDate string   `json:"releaseDate"`
+	Rating      float32  `json:"rating"`
+	Genres      []string `json:"genres"`
+	Actors      []string `json:"actors"`
+	Directors   []string `json:"directors"`
 }
 
 /*************************************************/
