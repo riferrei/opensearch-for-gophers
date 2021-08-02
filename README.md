@@ -4,7 +4,7 @@ This project contains an example that showcases different features from the offi
 
 ![Elasticsearch for Gophers](images/es4gophers.png)
 
-You can run this code with an Elasticsearch instance running locally, to which you can leverage the [Docker Compose code](./docker-compose.yml) available in the project. Alternatively, you can also run this code with an Elasticsearch instance from Elastic Cloud that can be easily created using the [Terraform code](./elastic-cloud.tf) also available in the project.
+You can run this code with an Elasticsearch instance running locally, to which you can leverage the [Docker Compose code](./docker-compose.yml) available in the project. Alternatively, you can also run this code with an Elasticsearch from Elastic Cloud that can be easily created using the [Terraform code](./elastic-cloud.tf) also available in the project.
 
 ## Examples available in this project:
 
