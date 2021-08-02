@@ -56,7 +56,7 @@ if err != nil {
 
 ### 🚀 Document Indexing
 
-All the movies will be [indexed](logic/index.go) in Elasticsearch. The example uses the Bulk API to index documents, which is the equivalent to this:
+All the movies will be [indexed](logic/index.go) in Elasticsearch. The example uses the [Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) to index documents, which is the equivalent to this:
 
 ```json
 POST movies/_bulk
@@ -66,7 +66,7 @@ POST movies/_bulk
 
 ### 🚀 Document Lookup
 
-An example of [document lookup](logic/lookup.go) is also available. Out of all movies loaded, an ID will be randomly selected, and the document associated with this ID will be looked up — just like you would do with:
+An example of [document lookup](logic/lookup.go) is also available. Out of all movies loaded, an ID will be randomly selected, and the document associated with this ID will be looked up. Just like you would do with:
 
 ```json
 GET movies/_doc/<DOCUMENT_ID>
@@ -74,7 +74,7 @@ GET movies/_doc/<DOCUMENT_ID>
 
 ### 🚀 You Know, for Search
 
-Obviously, this project couldn't leave behind an example of a search. The implemented [search](logic/search.go) look for all the best action movies from Keanu Reeves from 1995 to 2005. This search is the equivalent to:
+Obviously, this project couldn't leave behind an example of a search. The implemented [search](logic/search.go) look for all the best action movies from [Keanu Reeves](https://en.wikipedia.org/wiki/Keanu_Reeves) from 1995 to 2005. This search is the equivalent to:
 
 ```json
 GET movies/_search
