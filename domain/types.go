@@ -16,9 +16,9 @@ var ClientKey contextKey = contextKey{Key: 2}
 /*************************************************/
 
 type MovieRaw struct {
-	Title string  `json:"title"`
-	Year  int     `json:"year"`
-	Info  InfoRaw `json:"info"`
+	Title string   `json:"title"`
+	Year  int      `json:"year"`
+	Info  *InfoRaw `json:"info"`
 }
 
 type InfoRaw struct {
@@ -49,7 +49,7 @@ type GetResponse struct {
 	Index   string `json:"_index"`
 	ID      string `json:"_id"`
 	Version int    `json:"_version"`
-	Source  Movie  `json:"_source"`
+	Source  *Movie `json:"_source"`
 }
 
 type SearchResponse struct {
@@ -58,7 +58,7 @@ type SearchResponse struct {
 			Value int64 `json:"value"`
 		} `json:"total"`
 		Hits []*struct {
-			Source Movie `json:"_source"`
+			Source *Movie `json:"_source"`
 		} `json:"hits"`
 	} `json:"hits"`
 }
@@ -87,7 +87,7 @@ type Terms struct {
 
 type AggregationResponse struct {
 	Aggregations struct {
-		MovieCountPerGenreResponse struct {
+		MovieCountPerGenreResponse *struct {
 			Buckets []*struct {
 				Key           string `json:"key"`
 				DocumentCount int    `json:"doc_count"`
