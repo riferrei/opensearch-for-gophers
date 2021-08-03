@@ -30,7 +30,7 @@ func IndexMoviesAsDocuments(ctx context.Context) {
 	bulkIndexer, err := esutil.NewBulkIndexer(esutil.BulkIndexerConfig{
 		Index:      "movies",
 		Client:     client,
-		NumWorkers: 4,
+		NumWorkers: 5,
 	})
 	if err != nil {
 		panic(err)

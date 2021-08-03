@@ -13,7 +13,7 @@ import (
 func LoadMoviesFromFile(ctx context.Context) context.Context {
 
 	const (
-		concurrency = 4
+		concurrency = 5
 		moviesFile  = "movies.json"
 	)
 
