@@ -42,56 +42,5 @@ type Movie struct {
 }
 
 /*************************************************/
-/************* Queries and Searches **************/
+/************ Types for the Livestream ***********/
 /*************************************************/
-
-type GetResponse struct {
-	Index   string `json:"_index"`
-	ID      string `json:"_id"`
-	Version int    `json:"_version"`
-	Source  *Movie `json:"_source"`
-}
-
-type SearchResponse struct {
-	Hits struct {
-		Total struct {
-			Value int64 `json:"value"`
-		} `json:"total"`
-		Hits []*struct {
-			Source *Movie `json:"_source"`
-		} `json:"hits"`
-	} `json:"hits"`
-}
-
-/*************************************************/
-/************* Aggregation Example ***************/
-/*************************************************/
-
-type AggregationRequest struct {
-	Size int  `json:"size"`
-	Aggs Aggs `json:"aggs"`
-}
-
-type Aggs struct {
-	MovieCountPerGenre MovieCountPerGenreRequest `json:"movieCountPerGenre"`
-}
-
-type MovieCountPerGenreRequest struct {
-	Terms Terms `json:"terms"`
-}
-
-type Terms struct {
-	Field string `json:"field"`
-	Size  int    `json:"size"`
-}
-
-type AggregationResponse struct {
-	Aggregations struct {
-		MovieCountPerGenreResponse *struct {
-			Buckets []*struct {
-				Key           string `json:"key"`
-				DocumentCount int    `json:"doc_count"`
-			} `json:"buckets"`
-		} `json:"movieCountPerGenre"`
-	} `json:"aggregations"`
-}
