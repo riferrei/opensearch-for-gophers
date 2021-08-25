@@ -17,9 +17,9 @@ func MovieCountPerGenreAgg(ctx context.Context) {
 	var searchBuffer bytes.Buffer
 	aggregRequest := domain.AggregationRequest{
 		Size: 0,
-		Aggs: domain.Aggs{
-			MovieCountPerGenre: domain.MovieCountPerGenreRequest{
-				Terms: domain.Terms{
+		Aggs: &domain.Aggs{
+			MovieCountPerGenre: &domain.MovieCountPerGenreRequest{
+				Terms: &domain.Terms{
 					Field: "genres.keyword",
 					Size:  5,
 				},

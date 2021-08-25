@@ -68,16 +68,16 @@ type SearchResponse struct {
 /*************************************************/
 
 type AggregationRequest struct {
-	Size int  `json:"size"`
-	Aggs Aggs `json:"aggs"`
+	Size int   `json:"size"`
+	Aggs *Aggs `json:"aggs"`
 }
 
 type Aggs struct {
-	MovieCountPerGenre MovieCountPerGenreRequest `json:"movieCountPerGenre"`
+	MovieCountPerGenre *MovieCountPerGenreRequest `json:"movieCountPerGenre"`
 }
 
 type MovieCountPerGenreRequest struct {
-	Terms Terms `json:"terms"`
+	Terms *Terms `json:"terms"`
 }
 
 type Terms struct {
