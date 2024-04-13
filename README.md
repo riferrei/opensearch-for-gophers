@@ -1,10 +1,8 @@
-# Elasticsearch for Gophers
+# OpenSearch for Gophers
 
-This project contains an example that showcases different features from the official [Go Client for Elasticsearch](https://github.com/elastic/go-elasticsearch) that you can use as a reference about how to get started with Elasticsearch in your Go apps. It is not intended to provide the full spectrum of what the client is capable of — but it certainly puts you on the right track.
+This project contains an example that showcases different features from the official [Go Client for OpenSearch](https://opensearch.org/docs/latest/clients/go) that you can use as a reference about how to get started with OpenSearch in your Go apps. It is not intended to provide the full spectrum of what the client is capable of—but it certainly puts you on the right track.
 
-![Elasticsearch for Gophers](images/es4gophers.png)
-
-You can run this code with an Elasticsearch instance running locally, to which you can leverage the [Docker Compose code](./docker-compose.yml) available in the project. Alternatively, you can also run this code with an Elasticsearch from [Elastic Cloud](https://www.elastic.co/cloud/) that can be easily created using the [Terraform code](./elastic-cloud.tf) also available in the project.
+You can run this code with an OpenSearch instance running locally, to which you can leverage the [Docker Compose code](./docker-compose.yml) available in the project. Alternatively, you can also run this code with [Amazon OpenSearch](https://aws.amazon.com/opensearch-service) that can be easily created using the [Terraform code](./amazon-opensearch.tf) also available in the project.
 
 ## Examples available in this project:
 
@@ -41,25 +39,25 @@ The data model from this project is a collection of movies from the file [movies
 
 ### ✅ Connection Handling
 
-Once the movies are loaded, the code will create a [connection](logic/connect.go) with Elasticsearch and make this connection available within the context as well.
+Once the movies are loaded, the code will create a [connection](logic/connect.go) with OpenSearch and make this connection available within the context as well.
 
 ```go
-newClient, err := elasticsearch.NewClient(elasticsearch.Config{
-	Addresses: []string{
-		"http://localhost:9200",
-	},
+newClient, err := opensearch.NewClient(opensearch.Config{
+  Addresses: []string{
+    opensearchEndpoint,
+  },
 })
 if err != nil {
-	panic(err)
+  panic(err)
 }
 ```
 
 ### ✅ Document Indexing
 
-All the movies will be [indexed](logic/index.go) in Elasticsearch. The example uses the [Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) to index documents, which is the equivalent to this:
+All the movies will be [indexed](logic/index.go) in OpenSearch. The example uses the [Bulk API](https://opensearch.org/docs/latest/api-reference/document-apis/bulk) to index documents, which is the equivalent to this:
 
 ```json
-POST movies/_bulk
+POST _bulk
 { "index" : { "_index" : "movies", "_id" : "1" } }
 { "Year" : "2012", "Title": "The Avengers" }
 ```
@@ -72,7 +70,7 @@ An example of [document lookup](logic/lookup.go) is also available. Out of all m
 GET movies/_doc/<DOCUMENT_ID>
 ```
 
-### ✅ You Know, for Search
+### ✅ Doing Searches
 
 Obviously, this project couldn't leave behind an example of a search. The implemented [search](logic/search.go) look for all the best action movies from [Keanu Reeves](https://en.wikipedia.org/wiki/Keanu_Reeves) from 1995 to 2005. This search is the equivalent to:
 

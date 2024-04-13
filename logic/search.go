@@ -4,16 +4,16 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"es4gophers/domain"
 	"fmt"
+	"os4gophers/domain"
 	"strings"
 
-	"github.com/elastic/go-elasticsearch/v8"
+	"github.com/opensearch-project/opensearch-go"
 )
 
 func BestKeanuActionMovies(ctx context.Context) {
 
-	client := ctx.Value(domain.ClientKey).(*elasticsearch.Client)
+	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
 
 	var searchBuffer bytes.Buffer
 	search := map[string]interface{}{

@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"es4gophers/logic"
+	"os4gophers/logic"
 )
 
 func main() {
@@ -10,7 +10,7 @@ func main() {
 	ctx := context.Background()
 
 	ctx = logic.LoadMoviesFromFile(ctx)
-	ctx = logic.ConnectWithElasticsearch(ctx)
+	ctx = logic.ConnectWithOpenSearch(ctx)
 	logic.IndexMoviesAsDocuments(ctx)
 	logic.QueryMovieByDocumentID(ctx)
 	logic.BestKeanuActionMovies(ctx)

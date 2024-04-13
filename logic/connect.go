@@ -2,18 +2,37 @@ package logic
 
 import (
 	"context"
-	"es4gophers/domain"
+	"os4gophers/domain"
 
-	"github.com/elastic/go-elasticsearch/v8"
+	"github.com/opensearch-project/opensearch-go"
+	"github.com/opensearch-project/opensearch-go/opensearchapi"
 )
 
-func ConnectWithElasticsearch(ctx context.Context) context.Context {
+const (
+	opensearchEndpoint = "http://localhost:9200"
+)
 
-	newClient, err := elasticsearch.NewClient(elasticsearch.Config{
+func ConnectWithOpenSearch(ctx context.Context) context.Context {
+
+	newClient, err := opensearch.NewClient(opensearch.Config{
 		Addresses: []string{
-			"http://localhost:9200",
+			opensearchEndpoint,
 		},
+		// Username: "opensearch_user",
+		// Password: "W&lcome123",
 	})
+	if err != nil {
+		panic(err)
+	}
+
+	pingRequest := opensearchapi.PingRequest{
+		Pretty:     true,
+		Human:      true,
+		ErrorTrace: true,
+	}
+
+	_, err = pingRequest.Do(ctx, newClient)
+
 	if err != nil {
 		panic(err)
 	}

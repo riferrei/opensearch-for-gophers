@@ -3,19 +3,19 @@ package logic
 import (
 	"context"
 	"encoding/json"
-	"es4gophers/domain"
 	"fmt"
 	"math/rand"
+	"os4gophers/domain"
 	"strconv"
 	"time"
 
-	"github.com/elastic/go-elasticsearch/v8"
+	"github.com/opensearch-project/opensearch-go"
 )
 
 func QueryMovieByDocumentID(ctx context.Context) {
 
 	movies := ctx.Value(domain.MoviesKey).([]domain.Movie)
-	client := ctx.Value(domain.ClientKey).(*elasticsearch.Client)
+	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
 
 	rand.Seed(time.Now().UnixNano())
 	documentID := rand.Intn(len(movies) - 1)

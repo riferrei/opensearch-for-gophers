@@ -1,47 +1,50 @@
-version: '3.0'
-
 services:
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
-    container_name: elasticsearch
+  opensearch:
+    image: opensearchproject/opensearch:2.13.0
+    container_name: opensearch
+    hostname: opensearch
     environment:
-    - bootstrap.memory_lock=true
-    - ES_JAVA_OPTS=-Xms1g -Xmx1g
-    - discovery.type=single-node
-    - node.name=lonely-gopher
-    - cluster.name=es4gophers
+      - cluster.name=opensearch-cluster
+      - node.name=opensearch-node
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - "DISABLE_SECURITY_PLUGIN=true"
     ulimits:
       memlock:
-        hard: -1
         soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     ports:
-    - 9200:9200
-    networks:
-    - es4gophers
+      - 9200:9200
+      - 9600:9600
     healthcheck:
-      interval: 10s
-      retries: 20
-      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
+      interval: 20s
+      retries: 10
+      test: ["CMD-SHELL", "curl -s http://localhost:9200"]
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.14.0
-    container_name: kibana
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.13.0
+    container_name: opensearch-dashboards
+    hostname: opensearch-dashboards
     depends_on:
-      elasticsearch:
+      opensearch:
         condition: service_healthy
     environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      - 'OPENSEARCH_HOSTS=["http://opensearch:9200"]'
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
     ports:
-    - 5601:5601
-    networks:
-    - es4gophers
+      - 5601:5601
+    expose:
+      - "5601"
     healthcheck:
       interval: 10s
       retries: 20
-      test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:5601/api/status
+      test: ["CMD-SHELL", "curl -s http://localhost:5601"]
 
 networks:
-  es4gophers:
-    driver: bridge
+  default:
+    name: os4gophers

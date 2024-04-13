@@ -4,9 +4,9 @@ import (
 	"bufio"
 	"context"
 	"encoding/json"
-	"es4gophers/domain"
 	"fmt"
 	"os"
+	"os4gophers/domain"
 	"sync"
 )
 

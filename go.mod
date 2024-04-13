@@ -1,5 +1,8 @@
-module es4gophers
+module os4gophers
 
 go 1.16
 
-require github.com/elastic/go-elasticsearch/v8 v8.0.0-20210729094743-e8d7ea3ceeed
+require (
+	github.com/opensearch-project/opensearch-go v1.1.0
+	github.com/stretchr/testify v1.8.2 // indirect
+)
