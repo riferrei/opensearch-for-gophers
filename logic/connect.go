@@ -18,8 +18,8 @@ func ConnectWithOpenSearch(ctx context.Context) context.Context {
 		Addresses: []string{
 			opensearchEndpoint,
 		},
-		// Username: "opensearch_user",
-		// Password: "W&lcome123",
+		Username: "opensearch_user",
+		Password: "W&lcome123",
 	})
 	if err != nil {
 		panic(err)
