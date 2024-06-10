@@ -20,7 +20,7 @@ data "aws_region" "current" {}
 resource "aws_opensearch_domain" "opensearch" {
 
   domain_name    = var.domain_name
-  engine_version = "OpenSearch_2.11"
+  engine_version = "OpenSearch_2.13"
 
   cluster_config {
     dedicated_master_enabled = true
