@@ -2,12 +2,11 @@ package logic
 
 import (
 	"context"
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"os4gophers/domain"
-	"strconv"
-	"time"
 
 	"github.com/opensearch-project/opensearch-go"
 )
@@ -17,9 +16,11 @@ func QueryMovieByDocumentID(ctx context.Context) {
 	movies := ctx.Value(domain.MoviesKey).([]domain.Movie)
 	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
 
-	rand.Seed(time.Now().UnixNano())
-	documentID := rand.Intn(len(movies) - 1)
-	response, err := client.Get("movies", strconv.Itoa(documentID))
+	documentId, err := rand.Int(rand.Reader, big.NewInt(int64(len(movies))))
+	if err != nil {
+		panic(err)
+	}
+	response, err := client.Get("movies", documentId.String())
 	if err != nil {
 		panic(err)
 	}
@@ -32,6 +33,6 @@ func QueryMovieByDocumentID(ctx context.Context) {
 	}
 
 	movieTitle := getResponse.Source.Title
-	fmt.Printf("✅ Movie with the ID %d: %s \n", documentID, movieTitle)
+	fmt.Printf("✅ Movie with the ID %d: %s \n", documentId.Int64(), movieTitle)
 
 }
