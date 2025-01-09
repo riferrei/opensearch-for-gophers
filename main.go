@@ -13,7 +13,7 @@ func main() {
 	ctx = logic.ConnectWithOpenSearch(ctx)
 	logic.IndexMoviesAsDocuments(ctx)
 	logic.QueryMovieByDocumentID(ctx)
-	logic.BestKeanuActionMovies(ctx)
+	logic.SearchKeanuReevesMatrixMovies(ctx)
 	logic.MovieCountPerGenreAgg(ctx)
 
 }

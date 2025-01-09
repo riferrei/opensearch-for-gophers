@@ -50,9 +50,9 @@ func MovieCountPerGenreAgg(ctx context.Context) {
 	}
 
 	if len(aggregResponse.Aggregations.MovieCountPerGenreResponse.Buckets) > 0 {
-		fmt.Printf("✅ Top 5 Genres and their Movie Count: \n")
-		for _, bucket := range aggregResponse.Aggregations.MovieCountPerGenreResponse.Buckets {
-			fmt.Printf("   🚀 %s = %d\n", bucket.Key, bucket.DocumentCount)
+		fmt.Printf("🟦 Top 5 Genres and their Movie Count: \n")
+		for i, bucket := range aggregResponse.Aggregations.MovieCountPerGenreResponse.Buckets {
+			fmt.Printf("   %d) %s = %d\n", i+1, bucket.Key, bucket.DocumentCount)
 		}
 	}
 

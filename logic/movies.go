@@ -67,7 +67,7 @@ func LoadMoviesFromFile(ctx context.Context) context.Context {
 
 	waitGroup.Wait()
 
-	fmt.Printf("✅ Movies loaded from the file: %d \n", len(movies))
+	fmt.Printf("🟦 Movies loaded from the file: %d \n", len(movies))
 	return context.WithValue(ctx, domain.MoviesKey, movies)
 
 }

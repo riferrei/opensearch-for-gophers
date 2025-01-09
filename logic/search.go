@@ -11,7 +11,7 @@ import (
 	"github.com/opensearch-project/opensearch-go"
 )
 
-func BestKeanuActionMovies(ctx context.Context) {
+func SearchKeanuReevesMatrixMovies(ctx context.Context) {
 
 	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
 
@@ -77,7 +77,7 @@ func BestKeanuActionMovies(ctx context.Context) {
 		for _, movieTitle := range searchResponse.Hits.Hits {
 			movieTitles = append(movieTitles, movieTitle.Source.Title)
 		}
-		fmt.Printf("✅ Best action movies from Keanu: [%s] \n", strings.Join(movieTitles, ", "))
+		fmt.Printf("🟦 Matrix movies with Keanu Reeves: [%s] \n", strings.Join(movieTitles, ", "))
 	}
 
 }
