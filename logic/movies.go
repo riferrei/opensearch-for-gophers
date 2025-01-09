@@ -69,5 +69,4 @@ func LoadMoviesFromFile(ctx context.Context) context.Context {
 
 	fmt.Printf("🟦 Movies loaded from the file: %d \n", len(movies))
 	return context.WithValue(ctx, domain.MoviesKey, movies)
-
 }

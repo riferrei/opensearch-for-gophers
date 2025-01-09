@@ -6,14 +6,12 @@ import (
 )
 
 func main() {
-
 	ctx := context.Background()
 
 	ctx = logic.LoadMoviesFromFile(ctx)
 	ctx = logic.ConnectWithOpenSearch(ctx)
 	logic.IndexMoviesAsDocuments(ctx)
-	logic.QueryMovieByDocumentID(ctx)
+	logic.LookupMovieTitleByMovieID(ctx)
 	logic.SearchKeanuReevesMatrixMovies(ctx)
 	logic.MovieCountPerGenreAgg(ctx)
-
 }

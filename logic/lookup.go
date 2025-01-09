@@ -11,7 +11,7 @@ import (
 	"github.com/opensearch-project/opensearch-go"
 )
 
-func QueryMovieByDocumentID(ctx context.Context) {
+func LookupMovieTitleByMovieID(ctx context.Context) {
 
 	movies := ctx.Value(domain.MoviesKey).([]domain.Movie)
 	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
@@ -33,6 +33,5 @@ func QueryMovieByDocumentID(ctx context.Context) {
 	}
 
 	movieTitle := getResponse.Source.Title
-	fmt.Printf("🟦 Movie with the ID %d: %s \n", documentId.Int64(), movieTitle)
-
+	fmt.Printf("🟦 Movie with the ID '%d': %s \n", documentId.Int64(), movieTitle)
 }

@@ -38,5 +38,4 @@ func ConnectWithOpenSearch(ctx context.Context) context.Context {
 	}
 
 	return context.WithValue(ctx, domain.ClientKey, newClient)
-
 }

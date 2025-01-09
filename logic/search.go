@@ -79,5 +79,4 @@ func SearchKeanuReevesMatrixMovies(ctx context.Context) {
 		}
 		fmt.Printf("🟦 Matrix movies with Keanu Reeves: [%s] \n", strings.Join(movieTitles, ", "))
 	}
-
 }

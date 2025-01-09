@@ -56,5 +56,4 @@ func IndexMoviesAsDocuments(ctx context.Context) {
 	bulkIndexer.Close(ctx)
 	biStats := bulkIndexer.Stats()
 	fmt.Printf("🟦 Movies indexed on OpenSearch: %d \n", biStats.NumIndexed)
-
 }

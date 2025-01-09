@@ -55,5 +55,4 @@ func MovieCountPerGenreAgg(ctx context.Context) {
 			fmt.Printf("   %d) %s = %d\n", i+1, bucket.Key, bucket.DocumentCount)
 		}
 	}
-
 }
