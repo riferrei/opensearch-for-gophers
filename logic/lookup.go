@@ -11,16 +11,12 @@ import (
 	"github.com/opensearch-project/opensearch-go"
 )
 
-func LookupMovieTitleByMovieID(ctx context.Context) {
-
-	movies := ctx.Value(domain.MoviesKey).([]domain.Movie)
-	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
-
-	documentId, err := rand.Int(rand.Reader, big.NewInt(int64(len(movies))))
+func LookupMovieTitleByDocumentID(ctx context.Context, opensearchclient *opensearch.Client, arrLength int) {
+	documentId, err := rand.Int(rand.Reader, big.NewInt(int64(arrLength)))
 	if err != nil {
 		panic(err)
 	}
-	response, err := client.Get("movies", documentId.String())
+	response, err := opensearchclient.Get("movies", documentId.String())
 	if err != nil {
 		panic(err)
 	}
@@ -33,5 +29,5 @@ func LookupMovieTitleByMovieID(ctx context.Context) {
 	}
 
 	movieTitle := getResponse.Source.Title
-	fmt.Printf("🟦 Movie with the ID '%d': %s \n", documentId.Int64(), movieTitle)
+	fmt.Printf("🟦 Movie with the ID %d: %s \n", documentId.Int64(), movieTitle)
 }

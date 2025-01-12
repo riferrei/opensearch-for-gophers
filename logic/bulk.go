@@ -12,24 +12,10 @@ import (
 	"github.com/opensearch-project/opensearch-go/opensearchutil"
 )
 
-func IndexMoviesAsDocuments(ctx context.Context) {
-
-	movies := ctx.Value(domain.MoviesKey).([]domain.Movie)
-	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
-
-	// for documentID, document := range movies {
-	// 	res, err := client.Index("movies", opensearchutil.NewJSONReader(document),
-	// 		client.Index.WithDocumentID(strconv.Itoa(documentID)))
-	// 	if err == nil {
-	// 		fmt.Println(res)
-	// 	} else {
-	// 		fmt.Println(err)
-	// 	}
-	// }
-
+func IndexMoviesAsDocuments(ctx context.Context, opensearchClient *opensearch.Client, movies []domain.Movie) {
 	bulkIndexer, err := opensearchutil.NewBulkIndexer(opensearchutil.BulkIndexerConfig{
 		Index:      "movies",
-		Client:     client,
+		Client:     opensearchClient,
 		NumWorkers: 5,
 	})
 	if err != nil {
@@ -55,5 +41,5 @@ func IndexMoviesAsDocuments(ctx context.Context) {
 
 	bulkIndexer.Close(ctx)
 	biStats := bulkIndexer.Stats()
-	fmt.Printf("🟦 Movies indexed on OpenSearch: %d \n", biStats.NumIndexed)
+	fmt.Printf("🟦 Movies stored on OpenSearch: %d \n", biStats.NumIndexed)
 }

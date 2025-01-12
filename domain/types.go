@@ -1,19 +1,11 @@
 package domain
 
-/*************************************************/
-/*********** Internal for the Context ************/
-/*************************************************/
-
 type contextKey struct {
 	Key int
 }
 
 var MoviesKey contextKey = contextKey{Key: 1}
 var ClientKey contextKey = contextKey{Key: 2}
-
-/*************************************************/
-/*********** Types for the Application ***********/
-/*************************************************/
 
 type MovieRaw struct {
 	Title string   `json:"title"`
@@ -41,10 +33,6 @@ type Movie struct {
 	Directors   []string `json:"directors"`
 }
 
-/*************************************************/
-/************* Queries and Searches **************/
-/*************************************************/
-
 type GetResponse struct {
 	Index   string `json:"_index"`
 	ID      string `json:"_id"`
@@ -62,10 +50,6 @@ type SearchResponse struct {
 		} `json:"hits"`
 	} `json:"hits"`
 }
-
-/*************************************************/
-/************* Aggregation Example ***************/
-/*************************************************/
 
 type AggregationRequest struct {
 	Size int   `json:"size"`

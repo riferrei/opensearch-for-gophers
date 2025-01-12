@@ -12,4 +12,5 @@ terraform.tfstate
 .terraform.lock.hcl
 .terraform
 .vscode
+.idea
 go.sum

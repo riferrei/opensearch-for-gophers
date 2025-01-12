@@ -2,27 +2,30 @@ package logic
 
 import (
 	"context"
-	"os4gophers/domain"
-
 	"github.com/opensearch-project/opensearch-go"
 	"github.com/opensearch-project/opensearch-go/opensearchapi"
+	"log"
+	"os"
 )
 
-const (
-	opensearchEndpoint = "http://localhost:9200"
-)
+var opensearchConnectionURL = func() string {
+	if osConnURL := os.Getenv("OPENSEARCH_CONNECTION_URL"); osConnURL != "" {
+		return osConnURL
+	}
+	return "http://localhost:9200"
+}()
 
-func ConnectWithOpenSearch(ctx context.Context) context.Context {
-
+func ConnectWithOpenSearch(ctx context.Context) (*opensearch.Client, error) {
 	newClient, err := opensearch.NewClient(opensearch.Config{
 		Addresses: []string{
-			opensearchEndpoint,
+			opensearchConnectionURL,
 		},
 		Username: "opensearch_user",
 		Password: "W&lcome123",
 	})
 	if err != nil {
-		panic(err)
+		log.Printf("Error parsing the Redis URL: %v", err)
+		return nil, err
 	}
 
 	pingRequest := opensearchapi.PingRequest{
@@ -32,10 +35,10 @@ func ConnectWithOpenSearch(ctx context.Context) context.Context {
 	}
 
 	_, err = pingRequest.Do(ctx, newClient)
-
 	if err != nil {
-		panic(err)
+		log.Printf("Ping request failed: %v", err)
+		return nil, err
 	}
 
-	return context.WithValue(ctx, domain.ClientKey, newClient)
+	return newClient, nil
 }

@@ -10,10 +10,7 @@ import (
 	"github.com/opensearch-project/opensearch-go"
 )
 
-func MovieCountPerGenreAgg(ctx context.Context) {
-
-	client := ctx.Value(domain.ClientKey).(*opensearch.Client)
-
+func MovieCountPerGenreAgg(ctx context.Context, opensearchClient *opensearch.Client) {
 	var searchBuffer bytes.Buffer
 	aggregRequest := domain.AggregationRequest{
 		Size: 0,
@@ -31,12 +28,12 @@ func MovieCountPerGenreAgg(ctx context.Context) {
 		panic(err)
 	}
 
-	response, err := client.Search(
-		client.Search.WithContext(ctx),
-		client.Search.WithIndex("movies"),
-		client.Search.WithBody(&searchBuffer),
-		client.Search.WithTrackTotalHits(true),
-		client.Search.WithPretty(),
+	response, err := opensearchClient.Search(
+		opensearchClient.Search.WithContext(ctx),
+		opensearchClient.Search.WithIndex("movies"),
+		opensearchClient.Search.WithBody(&searchBuffer),
+		opensearchClient.Search.WithTrackTotalHits(true),
+		opensearchClient.Search.WithPretty(),
 	)
 	if err != nil {
 		panic(err)

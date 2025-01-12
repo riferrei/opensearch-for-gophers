@@ -70,9 +70,28 @@ An example of [document lookup](logic/lookup.go) is also available. Out of all m
 GET movies/_doc/<DOCUMENT_ID>
 ```
 
-### ✅ Doing Searches
+### ✅ Aggregation Analytics
 
-Obviously, this project couldn't leave behind an example of a search. The implemented [search](logic/search.go) look for all the best action movies from [Keanu Reeves](https://en.wikipedia.org/wiki/Keanu_Reeves) from 1995 to 2005. This search is the equivalent to:
+Finally, the project also runs a very interesting [aggregation](logic/aggreg.go) to find out the top five genres and their respective movie counts. Just like you would do with:
+
+```json
+GET movies/_search
+{
+  "size": 0,
+  "aggs": {
+    "movieCountPerGenre": {
+      "terms": {
+        "field": "Genres.keyword",
+        "size": 5
+      }
+    }
+  }
+}
+```
+
+### ✅ Document Searches
+
+Obviously, this project couldn't leave behind an example of a document search. The implemented [search](logic/search.go) look for all the best action movies from [Keanu Reeves](https://en.wikipedia.org/wiki/Keanu_Reeves) from 1995 to 2005.
 
 ```json
 GET movies/_search
@@ -102,25 +121,6 @@ GET movies/_search
           }
         }}
       ]
-    }
-  }
-}
-```
-
-### ✅ Aggregation Analytics
-
-Finally, the project also runs a very interesting [aggregation](logic/aggreg.go) to find out the top five genres and their respective movie counts. Just like you would do with:
-
-```json
-GET movies/_search
-{
-  "size": 0,
-  "aggs": {
-    "movieCountPerGenre": {
-      "terms": {
-        "field": "Genres.keyword",
-        "size": 5
-      }
     }
   }
 }
